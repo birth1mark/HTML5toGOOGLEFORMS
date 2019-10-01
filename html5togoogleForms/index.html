@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>:Chegadas Zara:</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<script>
+    var tipoLeitura;
+    var actionForm;
+
+    function setLeitura() {
+
+        // alert("Entrei");
+        var indiceSelecao = document.getElementById("opcao").options[document.getElementById("opcao").selectedIndex].index;
+        //alert(indiceSelecao);
+        // var matricula = document.getElementById("Matricula").value; não é necessário, apenas necessito do nome campo
+        // alert(matricula);
+        
+        //alert(indiceSelecao);
+        
+        if (indiceSelecao == 0) {
+            //alert(indiceSelecao);
+            // actionForm = "https://docs.google.com/forms/d/e/1FAIpQLSewldAZ1NyyjBkTbpgQO_nTXw0frK0U3Wu-OUWiSNtccNsyXA/formResponse";
+            // campoMatricula="entry.46461677";
+            // campoSSCC = "entry.551394251";
+            document.getElementById("tipoL").value="CHEGADAS";
+            document.getElementById("application-form").action =
+                 "https://docs.google.com/forms/d/e/1FAIpQLSewldAZ1NyyjBkTbpgQO_nTXw0frK0U3Wu-OUWiSNtccNsyXA/formResponse";
+                
+            
+        }
+
+        if (indiceSelecao == 1) {
+            
+            // actionForm = "https://docs.google.com/forms/d/e/1FAIpQLScSDF1OYUKOgVyXXnGsVn_74wB4G5GrCEpEUdnjPE1lKVj5_A/formResponse";
+            // campoMatricula="entry.46461677";
+            // campoSSCC = "entry.551394251";
+            document.getElementById("tipoL").value="SAIDAS";
+            document.getElementById("application-form").action =
+                 "https://docs.google.com/forms/u/1/d/e/1FAIpQLSdnxd-2Xyb0rC1BGo1-ZcB32f-gzUiePqC9W8IFCqXzHu6Atw/formResponse";
+            
+        }
+        limpar();
+        
+    }
+
+    function limpar() {
+        document.getElementById("SSCC").select();
+    }
+</script>
+
+<body>
+    <div class="jumbotron d-flex align-items-center">
+        <div class="container">
+            <form //action="https://docs.google.com/forms/d/e/1FAIpQLSewldAZ1NyyjBkTbpgQO_nTXw0frK0U3Wu-OUWiSNtccNsyXA/formResponse"
+                method="post" id="application-form" target="hidden-form">
+                <div class="form-group">
+                    <label for="Matricula">Matricula</label>
+                    <input type="text" class="form-control" id="Matricula" name="entry.46461677"
+                        aria-describedby="Matricula" placeholder="Preencher com matricula">
+                    <small id="arrival time" class="form-text text-muted"></small>
+                    <label for="SSCC">SSCC</label>
+                    <input type="text" class="form-control" id="SSCC" name="entry.551394251" aria-describedby="SSCC"
+                        placeholder="Ler Codigo de Barras" autofocus="autofocus">
+
+                    <label for="opcao">Tipo de Leitura</label>
+                    <select class="form-control form-control-sm" id="opcao" onchange="setLeitura()">
+                        <option>CHEGADAS</option>
+                        <option>SAIDAS</option>
+                    </select>
+
+                    <input type="text" class="form-control" id="tipoL" style="display:none" name="entry.1576606823" aria-describedby="tipoL"
+                        value="" >
+                    <div align="right">
+                        <button type="submit" class="btn btn-primary btn-lg" onclick="limpar()">Submeter</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+
+    <IFRAME style="display:none" name="hidden-form"></IFRAME>
+</body>
+
+</html>
